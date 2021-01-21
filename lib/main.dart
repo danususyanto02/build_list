@@ -5,65 +5,48 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+  static const String titleee = "Build PC";
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: MyHomePage(title: 'Build PC'),
-      debugShowCheckedModeBanner: false,
+      title: titleee,
+      home: homeBody(),
     );
   }
-}
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
-  final String title;
-
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-      appBar: AppBar(backgroundColor: Colors.pinkAccent, centerTitle: true,
-        title: Text(widget.title),
+  Scaffold homeBody() {
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text(
+          titleee,
+          style: TextStyle(color: Colors.black),
+        ),
+        backgroundColor: Colors.greenAccent,
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
+      backgroundColor: Colors.greenAccent,
+      body: Container(
+        margin: EdgeInsets.all(10),
+        child: ListView(
+          children: [buildCard()],
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add_box_rounded),
       ),
-    ) // This trailing comma makes auto-formatting nicer for build methods.
+    );
+  }
+
+  Card buildCard() {
+    return Card(
+      elevation: 5,
+      child: Row(
+        children: <Widget>[
+          Container(
+              margin: EdgeInsets.all(10), child: Icon(Icons.search_rounded))
+        ],
+      ),
     );
   }
 }
